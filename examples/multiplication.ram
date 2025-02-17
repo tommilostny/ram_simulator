@@ -1,0 +1,33 @@
+READ 1
+JZERO =13
+STORE 1
+READ 2
+JZERO =13
+STORE 2
+LOAD 3
+ADD 1 # (+a)
+STORE 3
+LOAD 2
+SUB =1 # decrement
+JPOS =6 # loop
+LOAD 3
+HALT
+
+# I = (a, b), a * b, a >= 0, b >= 0
+# ==============================================================
+# uniform space complexity
+# 2 + 4 = 6  is  O(1)
+#
+# uniform time complexity
+# lines 1-5:    O(1)
+# lines 6-12:   b-times
+# lines 13-14:  O(1)
+#
+# "b" = 2^(k-1) is O(2^(k-1)) (k is bit lenght of the input)
+# ==============================================================
+# logarithmic space complexity
+# biggest number is a*b <= 2^k, len(2^k) = k => O(k)
+# len(a*b) = len(a) + len(b)
+#
+# logarithmic time complexity
+# O(2^(k-1) * k)
