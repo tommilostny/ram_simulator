@@ -1,0 +1,94 @@
+                               OPTIMIZATION & APPROXIMATION PROBLEMS
+
+=====================================================================================================
+
+PO = NPO => P = NP
+
+KNAPSACK-O
+    - set of items V
+    - weight function   v: V -> N+
+    - price function    p: V -> N+
+    - max. weight       V_max
+
+- find some V' ⊆ V :  Σ p(i) is maximal
+                     i⊆V'
+
+=====================================================================================================
+
+Let A be an absolute approximation algorithm for KNAPSACK with an error k.
+Let k  = (V,c,v,V_max) be my knapsack input with c : V -> N+.
+Let k' = (V,c',v,V_max), where c'(x) = c(x) * (k+1)
+
+Apply algorithm A to get some solution with error bounded by k:
+
+                                                OPT(k) = (k+1) * p
+                                             <----------------------->
+                                            A(k)                     |  c(A(k))+(k+1)
+---------------------------------------------|-----------------------|----|-----------------
+                                        c(A(k)) = (k+1)*.
+c(A(k)) = OPT(k)
+
+=====================================================================================================
+
+Input: G=(V,E)
+Multiplication of the graph by (k+1)
+
+ex.: graph with 6 edges in hexagonal shape with a CLIQUE of size 6, exactly the same copies,
+connect copies to get CLIQUE of size (k+1)*p
+
+(this was with graph image on the whiteboard, very hard to draw in this text :D,
+but the idea si similar to the KNAPSACK approach described above)
+
+=====================================================================================================
+
+Vertex Cover
+Input: undirected graph G=(V,E)
+Problem: Find a minimal vertex cover of G (i.e. the vertex cover with minimal size)
+Theorem: There exists a 0.5-approximation algorithm
+Consequence: If there exists an approximation threshold for vertex cover then it is lower than 0.5
+
+G=(V,E)
+M = ∅
+while E != ∅ do
+    pick some edge {v,v'} ∈ E
+    E <- E \ { {a,b} | a ∈ {v,v'} ∨ b ∈ {v,v'} }
+    M <- M ∪ {v,v'}
+
+We picked 1/2 * |M| edges, where all of them do not have a common vertex.
+So the optimal solution must contain at least 1/2 * |M| vertices.
+
+ε = 0.5
+
+=====================================================================================================
+
+Tasks scheduling - the naive way:
+A set of longer and shorter task. (t)
+A set of processors of length m.
+Take a task and assign it to the processor under lowest load.
+
+All the processors are fully used between <0, c(A(x)) - p_n>
+
+          n
+OPT(x) >= Σ t_i
+         i=1
+
+This approximate solution is surely upper bounded by
+
+ n
+ Σ t_i >= m(c(A(x)) - t_n) + t_n
+i=1
+
+OPT(x) >= c((A(x)) - t_n) + (t_n/m)         t_n <= OPT(x)
+
+OPT(x) - (t_n/m) + t_n >= c(A(x))
+
+OPT(x) + (((m-1) * t_n) / m) >= c(A(x))
+
+OPT(x) + (((m-1)/m) * OPT(x)) >= c(A(x))
+
+OPT(x) * (1 + ((m-1)/m)) >= c(A(x))
+
+=====================================================================================================
+
+Polynomial Approximation Scheme
+
