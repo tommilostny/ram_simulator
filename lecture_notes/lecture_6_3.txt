@@ -1,0 +1,24 @@
+LANGUAGE DENSITY
+
+A is defined as { <x,φ> | φ is a boolean formula with |x| variables
+                          x ∈ {0,1}^*
+                          ∃y: y >= x: φ[y] = TRUE }
+
+SAT <= A: R(φ) = <00...0^r,φ>
+A ∈ NP, because y can be nondeterministically chosen
+
+------------------------------------------------------------------------------
+
+Let us suppose that B is a sparse NP-complete language with density n^k.
+Then exists reduction A <= B.
+
+<x,φ> ∈ A
+
+              <y,φ> ∈ A                     |             <y,φ> ∉ A
+0000...0                                    |                                        1111...1
+<---|-----|-----|-----|-----|-----|----|----|----|-----|-----|----|----|------|------|----->
+   a1     a2    a3 ...a4
+----------------|--------------------------------|--------------X---------------------------
+                a3-------------X---------------- a3
+
+2 * n^k samples

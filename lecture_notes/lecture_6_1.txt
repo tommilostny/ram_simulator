@@ -1,0 +1,51 @@
+P AND NP RELATIONSHIP
+
+Mi is an encoding of a T.M.
+Mi,j is a modification of Mi such that it terminates in O(n^j) steps.
+
+Order machines Mi,j in a sequence
+
+    j #
+      #
+      #
+    4 # .
+    3 #   .
+    2 #.    .
+    1 #  .    .
+    #####################################
+    i 0 1 2 3 4
+
+K:  input is x (binary code) {0,1}*
+    if SAT(x) and f(|x|) is even, then ACCEPT
+    else REJECT
+
+f(0) = 0
+f: N -> N
+f(a) make exactly 2a steps in two phases
+    1. phase: starts to compute f(0), f(1), f(2), f(3), ..., f(q) up to limit of steps given by "a"
+    2. phase: then prepare either f(q) or f(q) + 1 ; f(q) = i
+        A)  k = 2i
+            w = ε
+            while true:
+                if K(w) != Mi(w) then return i + 1
+                w = next word(w)
+            on timeout return i
+
+        no word w => L(Mi) = L(K)
+        K is in DTIME(n^j)
+
+        for big inputs K = SAT = Mi
+        - this contradicts P != NP, but for a long enough computation K(w) != Mi(w) will be found
+
+        B)  k = 2i + 1
+            w = ε
+            while true:
+                if K(Ri(w)) != SAT(w) then return i + 1
+                w = next word(w)
+            on timeout return i
+
+            Ri is a polynomial reduction done by machine Mi
+
+        if K is NP-complete then there exists some reduction Ri from SAT to K
+        f is stuck on Ri
+        this means K is polynomial if SAT is polynomial

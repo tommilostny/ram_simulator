@@ -1,0 +1,47 @@
+POLYNOMIAL ISOMORPHISM
+
+(Sigma)*    (Gamma)*
+
+R1:     f^-1
+    .<---------_
+               |
+       g^-1    |
+   w --------->.
+
+R2:     f^-1
+    .<---------_
+               |
+       g^-1    |
+   w' -------->.
+
+Isomorphism until there is no f^-1 to go back from Gamma to Sigma languages
+
+        { x ∈ R1: f(x)
+h(x) =  { x ∈ R2: g^-1(x)
+
+
+Padding (x_ or not x_)
+
+========================================================================================
+
+Padding for SAT:
+    Input is φ and y ∈ {0,1}^*
+    Create new variables a_new, b_1, ..., b_|y|
+    (|y| is the lenght of y)
+    return φ and (a_new or not a_new) and π1b1 and π2b2 and ... and π_|y|b_|y|
+
+    where πi = { positive if y[i] = 1
+               { negation if y[i] = 0
+
+========================================================================================
+
+Padding for CLIQUE:
+    K-vertex cover:
+        Input is G=(V,E), k, y ∈ {0,1}^*
+        pad(G,k,y) = G'(V',E'), k'
+        V' = V u { d1,d2,d3 } u { ai,bi | i <= |y| }
+        E' = E u { (d1,d2), (d2,d3), (d3,d1) } u { (ai,bi) | y[i] = 1 }
+
+                    |y|
+        K' = K + 2 + Σ y[i]
+                    i=1
