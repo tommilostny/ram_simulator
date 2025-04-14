@@ -101,3 +101,79 @@ Polynomial hierarchy
  p
 Π  = co-NP
  1
+
+Σ_2 = ¬ (∨∨∨∨ ∧∧∧∧) = ∧∧∧∧ ∨∨∨∨ ¬ = Π_2
+
+Σ_2 ∪ Π_2 ⊆ Σ_3 ∩ Π_3
+
+∨∨∨∨ ∧∧∧∧     ∨∨∨∨ ∧∧∧∧ ∨∨∨∨
+∧∧∧∧ ∨∨∨∨     ∧∧∧∧ ∨∨∨∨ ∧∧∧∧
+
+======================================================================================================
+
+Relativized classes
+
+Polynomial hierarchy and machines with an oracle
+
+Δ_0 = Σ_0 = Π_0 = P = Δ_1
+
+Δ_1 = P^P = P
+Σ_1 = NP^P = NP - same level as Π_1
+Π_1 = co-NP^P = co-NP - same level as Σ_1
+
+Δ_2 = P^NP - a little above NP and co-NP
+Σ_2 = NP^NP - above Σ_1 and Δ_2
+Π_2 = co-NP^NP
+
+lattice hierarchy structure image
+
+PSPACE is above or the same because it uses alternating TMs with no bound k
+
+======================================================================================================
+
+L_0 = RE
+L_1 = context sensitive languages (Linear Bounded Automata)
+L_2 = context-free languages
+L_3 = regular languages
+
+======================================================================================================
+
+LBA membership ∈ PSPACE
+
+<M,w> ... w ∈ L(M) - linear time, yes
+
+LBA membership ∈ PSPACE-hard
+
+PSPACE bounded Turing Machine M, there's a polynomial p(n)
+<M,w> -> <M,w + Δ^p(w) padding>
+
+======================================================================================================
+
+Universality problem of a nondeterministic finite automaton (NFA) A
+
+DFA D - L(D) = Σ^*
+
+comlement of D - swap accepting and non-accepting states - check if language is empty
+- check reachibility to an accepting state (simple YES/NO)
+
+NFA A - determinize and then check as before - exponential space
+
+∈ PSPACE ?
+
+∈ NPSPACE (as it is equal to PSPACE)
+
+nondeterministically guess the path in the deterministic FA, generating macro states on the fly
+
+∈ PSPACE-hard
+
+reduction from LBA membership
+
+<M,w> w ∈ L(M) <=> L(A_Mw) != Σ^*, NFA A_Mw
+
+                                w
+                              |---|
+LBA configuration example:  qΔabcabΔ#sΔabdabΔ# ... #q_FΔ...Δ
+                                |--------^
+                                mismatch - should not happen if chosen nondeterministically
+
+q_F - final state - accepting configuration

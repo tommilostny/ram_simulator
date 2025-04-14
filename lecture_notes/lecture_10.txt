@@ -1,0 +1,24 @@
+                                           Counting classes
+======================================================================================================
+
+how many solutions are there? ... slides
+
+(non-standardised pronounciation sharp, number, counting, ...)
+#SAT
+#CLIQUE
+#HAMILTONIAN PATH - same vertices in different order the same or different solution?
+
+======================================================================================================
+
+class #P - no need for #NP
+
+======================================================================================================
+
+Reduction of Counting Problems
+
+A --> B (sol. B)
+|...         |
+(sol. A)<----|
+          S
+
+#SAT is #P complete
