@@ -1,0 +1,53 @@
+======================================================================================================
+                                                PRAM
+======================================================================================================
+SORTING:
+    Input: array of n items
+    Output: sorted array
+
+sequential algorithm:   n * log(n)
+p(n) processors:        
+
+1st phase:
+|-------|-------| - each processor sorts a small part
+  p(1)     p(2)  ...
+
+n/p(n) * log(n/p(n))
+
+2nd phase:
+|-------|-------|...
+   \         /
+   |---------| - combine until 1 last array (tree, logarithmic number of merges)
+
+   log(p(n))
+
+...
+4 * n/8
+2 * n/4
+1 * n/2
+
+O(n) time to do merging
+
+final time complexity: O(n/p(n) * log(n/p(n)) + n)
+- for finite number of processors O(n * log(n))
+- p(n) >= log(n), then the runing time is in O(n)
+
+======================================================================================================
+                            Simulation between PRAMs and Boolean Circuits
+======================================================================================================
+
+Convert steps of computation of PRAM into layers of Boolean Circuits... More on slides.
+The number of layers representing a single step is bounded.
+
+                Input
+|--------------------------------------|
+              \ /    |
+               O     O
+               |     |
+|--------------------------------------|
+                 ...
+                Output
+
+======================================================================================================
+                                           P-completeness
+======================================================================================================
